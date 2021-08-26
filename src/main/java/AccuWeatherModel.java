@@ -6,6 +6,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.util.List;
 
 public class AccuWeatherModel implements WeatherModel {
     private static final String PROTOCOL = "https";
@@ -26,7 +27,7 @@ public class AccuWeatherModel implements WeatherModel {
     private int TempCelsius;
     private static final OkHttpClient okHttpClient = new OkHttpClient();
     private static final ObjectMapper objectMapper = new ObjectMapper();
-
+    private DataBaseRepository dataBaseRepository = new DataBaseRepository();
     public void getWeather(String selectedCity, Period period) throws IOException {
         switch (period) {
             case NOW:
@@ -49,7 +50,6 @@ public class AccuWeatherModel implements WeatherModel {
                 showAvarageWeatherForNdays(1, oneDayForecastResponse.body().string(), selectedCity);
                 break;
             case FIVE_DAYS:
-
                 HttpUrl httpUrlFiveDays = new HttpUrl.Builder()
                         .scheme(PROTOCOL)
                         .host(BASE_HOST)
@@ -69,6 +69,11 @@ public class AccuWeatherModel implements WeatherModel {
                 showAvarageWeatherForNdays(5, fiveDayForecastResponse.body().string(), selectedCity);
                 break;
         }
+    }
+
+    @Override
+    public List<Weather> getSavedToDBWeather() {
+        return dataBaseRepository.getSavedToDBWeather();
     }
 
     private String detectCityKey(String selectCity) throws IOException {

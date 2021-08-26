@@ -20,13 +20,13 @@ public class UserInterfaceView {
             }
 
             System.out.println("Enter 1 for today's weather forecast; " +
-                    "Enter 5 for 5 days weather forecast; Enter 0 for exit:");
+                    "Enter 5 for 5 days weather forecast; Enter 2 for read from DB; Enter 0 for exit:");
 
             String command = scanner.nextLine();
 
             if (command.equals("0")) break;
-            if (!Pattern.matches("[1,5,0]", command)) {
-                System.out.println("Enter 0, 1 or 5!");
+            if (!Pattern.matches("[1,2,5,0]", command)) {
+                System.out.println("Enter 0, 1, 2 or 5!");
                 continue;
             }
 
