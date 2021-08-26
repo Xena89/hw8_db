@@ -7,6 +7,16 @@ public class Weather {
         this.localDate = localDate;
         this.temperature = temperature;
     }
+
+    @Override
+    public String toString() {
+        return "Weather{" +
+                "city='" + city + '\'' +
+                ", localDate='" + localDate + '\'' +
+                ", temperature=" + temperature +
+                '}';
+    }
+
     public String getCity() {
         return city;
     }
@@ -24,14 +34,5 @@ public class Weather {
     }
     public void setTemperature(double temperature) {
         this.temperature = temperature;
-    }
-
-    @Override
-    public String toString() {
-        return "Weather{" +
-                "city='" + city + '\'' +
-                ", localDate='" + localDate + '\'' +
-                ", temperature=" + String.format("%.2f", temperature) +
-                '}';
     }
 }
